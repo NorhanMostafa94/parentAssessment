@@ -44,19 +44,6 @@
                 font-size: 15px;
             }
 
-            &:-webkit-autofill {
-                -webkit-box-shadow: 0 0 0 1000px white inset !important;
-            }
-
-            &:-moz-autofill {
-                -moz-box-shadow: 0 0 0 1000px white inset !important;
-            }
-
-            &.dq-error {
-                // border: 1px solid $error-color;
-                // background-color: $white-color;
-            }
-
             
         }
         .input-icon {
@@ -69,16 +56,6 @@
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
-        }
-
-        
-        .error {
-            // color: $error-color;
-        }
-        .ic-show,
-        .ic-hide {
-            color: $gray-light-color;
-            z-index: 1;
         }
     }
 }

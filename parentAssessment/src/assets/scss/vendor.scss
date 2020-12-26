@@ -32,10 +32,6 @@
         font-size: 15px;
         font-weight: 300;
     }
-
-    .toast-error {
-        // background-image: url("/../assets/images/status/error.svg");
-    }
     .toast-error {
         background-color: $error-background;
         border: 1px solid $error-color;
