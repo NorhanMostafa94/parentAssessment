@@ -1,0 +1,53 @@
+@import "~ngx-toastr/toastr.css";
+
+@import "abstracts/variables";
+
+//ngx-toastr
+.toast-container {
+    &.toast-top-right,
+    &.toast-top-left {
+        bottom: 0px;
+    }
+    & > .ngx-toastr {
+        width: 442px;
+        height: auto;
+        // display: flex;
+        align-items: center;
+        // padding: 16px;
+        border-radius: 8px;
+        box-shadow: none !important;
+        
+    }
+    .toast-close-button {
+        font-weight: 400;
+        margin: 0 5px;
+    }
+    .toast-title {
+        color: $text-color;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    .toast-message {
+        color: $text-color;
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    .toast-error {
+        // background-image: url("/../assets/images/status/error.svg");
+    }
+    .toast-error {
+        background-color: $error-background;
+        border: 1px solid $error-color;
+        .toast-close-button {
+            background-color: transparent;
+            outline: none;
+            color: $error-color;
+            border: 0;
+            font-size: 17px;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}

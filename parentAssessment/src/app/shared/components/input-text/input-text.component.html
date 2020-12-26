@@ -1,0 +1,12 @@
+<div class="input-container" [formGroup]="formGroup" *ngIf="formGroup">
+    <div class="label-container">
+        <label class="label" [for]="controlName">{{ label }}</label>
+    </div>
+
+    <div class="input">
+        <input autocomplete="off" [type]="type" [name]="name ? name : controlName"
+            [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="emitValue()" [formControlName]="controlName"
+            (keydown)="preventWhiteSpace($event)" [id]="controlName"
+            [ngClass]="{'error': formGroup.get(controlName).errors && formGroup.get( controlName).dirty}"/>
+    </div>
+</div>

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/scss/functions.scss";
+@import "~bootstrap/scss/variables.scss";
+@import "~bootstrap/scss/mixins.scss";
+@import "~bootstrap/scss/root.scss";
+@import "~bootstrap/scss/reboot.scss";
+@import "~bootstrap/scss/grid.scss";
+@import "~bootstrap/scss/dropdown.scss";
+@import "~bootstrap/scss/nav.scss";
+@import "~bootstrap/scss/navbar.scss";
+@import "~bootstrap/scss/card.scss";
+@import "~bootstrap/scss/utilities.scss";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./assets/scss/app.scss";

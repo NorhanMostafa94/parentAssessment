@@ -1,0 +1,37 @@
+<div class="login-page">
+    <div class="row m-0 justify-content-center">
+        <div class="col-sm-10 col-md-6 col-lg-6">
+            <div class="login-form-wrapper d-flex">
+                <div class="image-container">
+                    <img src="assets/images/login-page.png" alt="login-page" srcset="">
+                </div>
+                <div class="login-form-container px-4 d-flex flex-column flex-grow-1 justify-content-center">
+                    <div class="title">
+                        Welcome back!
+                    </div>
+                    <div class="subtitle mt-2">
+                        Please login to access your <span class="span">Spaces</span> Dashboard
+                    </div>
+                    <div class="login-form">
+                        <form [formGroup]="loginForm">
+                            <div class="login-form__control mt-3">
+                                <app-input-text [formGroup]="loginForm" controlName="email" type="email" name="email"
+                                    placeholder="Enter your email" label="Email"></app-input-text>
+                            </div>
+                            <div class="login-form__control mt-3">
+                                <app-input-text [formGroup]="loginForm" controlName="password" type="password"
+                                    name="password" placeholder="Enter your password" label="Password"></app-input-text>
+                            </div>
+                            <div class="btns-container mt-4 d-flex align-items-center justify-content-between">
+                                <div class="forget-text">
+                                    Forgot password?
+                                </div>
+                                <button class="btn btn-sm primary" (click)="login()">LOGIN</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

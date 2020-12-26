@@ -3,14 +3,31 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from './core/core.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginModule } from './modules/login/login.module';
+import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    CoreModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      //  autoDismiss: false,
+    }),
+    ToastContainerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

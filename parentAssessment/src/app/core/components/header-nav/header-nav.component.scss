@@ -1,0 +1,22 @@
+@import 'abstracts/variables';
+
+.navbar{
+    background-color: $white-color;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    .navbar-brand{
+        .logo{
+            width: 124px;
+            height: 40px;
+        }
+    }
+    .navbar-nav{
+        .nav-item{
+            .nav-link{
+                color: $text-color;
+                font-size: 15px;
+                margin: 0 15px;
+                outline: none;
+            }
+        }
+    }
+}
