@@ -60,8 +60,8 @@ export class UsersListComponent implements OnInit {
   /**
    * `getUserDetails()` to get user details when click on card
    */
-  getUserDetails(id, user) {
-    this.userDetailsId = id;
+  getUserDetails(user) {
+    this.userDetailsId = user.id;
     this.userDetails = user;
     this.isDetailsPreview = true;
   }

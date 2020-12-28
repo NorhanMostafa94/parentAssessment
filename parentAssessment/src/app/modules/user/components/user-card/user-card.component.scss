@@ -1,6 +1,7 @@
 @import "abstracts/variables";
 
 .user-card-container {
+    transition: 0.3s all;
     &__user {
         .image-container {
             width: 55px;
@@ -13,18 +14,29 @@
                 object-fit: cover;
             }
         }
+        .text-container{
+            color: $text-color;
+        }
     }
     .icons-container {
+        cursor: pointer;
         svg {
             fill: $primary-color;
         }
     }
-    &:hover{
+    &:hover {
         background-color: $gray-light-color;
     }
-    &.active{
+    &.active {
         background-color: $primary-color;
         border-radius: 10px 0 0 10px;
+
+        .image-container {
+            border: 2px solid $white-color;
+        }
+        .text-container{
+            color: $white-color;
+        }
         .icons-container {
             svg {
                 fill: $white-color;

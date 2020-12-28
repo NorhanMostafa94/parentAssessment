@@ -17,8 +17,8 @@
     <div class="row users-list-wrapper d-flex justify-content-center no-gutters">
         <div class="pb-4 user-card-wrapper" infiniteScroll [scrollWindow]="false" [infiniteScrollDistance]="0.1"
             [infiniteScrollThrottle]="0" (scrolled)="loadMore()"
-            [ngClass]="{'col-sm-11': !isDetailsPreview,'col-sm-8':isDetailsPreview}">
-            <app-user-card class="user-card" [user]="user" (onActivateCard)="getUserDetails($event,user)"
+            [ngClass]="{'col-sm-11': !isDetailsPreview,'col-sm-7':isDetailsPreview}">
+            <app-user-card class="user-card" [user]="user" (onActivateCard)="getUserDetails($event)"
                 [isCardActive]="isDetailsPreview" [activeCardId]="userDetailsId" *ngFor="let user of users"
                 (onEdit)="edit($event,template)" (onDelete)="delete($event,deleteTemplate)"></app-user-card>
             <div class="loading-indicator-wrapper" *ngIf="showLoading">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="details-wrapper col-sm-4" *ngIf="isDetailsPreview">
+        <div class="details-wrapper col-sm-5" *ngIf="isDetailsPreview">
             <app-user-details-card [user]="userDetails" (onClose)="closeDetails($event)"
                 (onEdit)="edit($event,template)"
                 (onDelete)="delete($event,deleteTemplate)">
