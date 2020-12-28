@@ -150,7 +150,11 @@ export class UsersListComponent implements OnInit {
       this.isDetailsPreview = false;
       this.userDetailsId = '';
       this.modalRef.hide();
-      this.getUsersList();
+      // this.getUsersList();
+
+      let index;
+      index = this.users.findIndex(user=>user.id==id);
+      this.users.splice(index,1)
 
     })
   }
@@ -168,6 +172,14 @@ export class UsersListComponent implements OnInit {
           this.userDetailsId = '';
           this.alertService.show('success', 'Success', 'User has been added successfully')
           this.modalRef.hide();
+          let user:User = {
+            avatar:'',
+            email:'',
+            first_name:res['name'],
+            last_name:res['name'],
+            id:res['id']
+          }
+          this.users.push(user)
         }
       })
     }
@@ -175,10 +187,26 @@ export class UsersListComponent implements OnInit {
       this.userLogicService.updateUser(this.userDetailsId, this.userForm.value).subscribe(res => {
         if (res) {
           this.isDetailsPreview = false;
-          this.userDetailsId = '';
           this.alertService.show('success', 'Success', 'User has been updated successfully')
           this.modalRef.hide();
+          let index;
+          index = this.users.findIndex(user=>user.id==this.userDetailsId);
+          let updatedUser:User = {
+            avatar:this.userDetails.avatar,
+            email:'',
+            first_name:res['name'],
+            last_name:res['name'],
+            id:this.userDetails.id
+          }
+          this.users = this.users.map(user=>{
+            if(user.id == this.userDetailsId){
+               user= updatedUser;
+            }
+            return user;
+          })
         }
+        this.userDetailsId = '';
+
       })
     }
     this.getUsersList();
