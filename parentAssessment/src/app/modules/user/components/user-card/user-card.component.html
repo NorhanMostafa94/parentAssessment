@@ -12,13 +12,13 @@
             </div>
         </div>
         <div class="col-sm-4 d-flex align-items-center justify-content-end">
-            <div class="icons-container" *ngIf="user.id !== activeCardId">
+            <div class="icons-container" *ngIf="user.id !== activeCardId" (click)="edit(user)">
                 <app-icons icon="edit"></app-icons>
             </div>
-            <div class="icons-container mx-3" *ngIf="user.id !== activeCardId">
+            <div class="icons-container mx-3" *ngIf="user.id !== activeCardId" (click)="delete(user)">
                 <app-icons icon="delete"></app-icons>
             </div>
-            <div class="icons-container" (click)="activateCard(user.id)">
+            <div class="icons-container" (click)="activateCard(user)">
                 <svg width="16" height="16" viewBox="0 0 24 24">
                     <use xlink:href="#arrow"></use>
                 </svg>

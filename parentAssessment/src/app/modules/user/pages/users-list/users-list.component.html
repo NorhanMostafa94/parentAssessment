@@ -15,15 +15,21 @@
         </div>
     </div>
     <div class="row users-list-wrapper d-flex justify-content-center no-gutters">
-        <div class="pb-4 user-card-wrapper"
-        infiniteScroll [scrollWindow]="false" [infiniteScrollDistance]="0.1"
-        [infiniteScrollThrottle]="0" (scrolled)="loadMore()"
-         [ngClass]="{'col-sm-11': !isDetailsPreview,'col-sm-8':isDetailsPreview}">
-            <app-user-card [user]="user" (onActivateCard)="getUserDetails($event)" [isCardActive]="isDetailsPreview"
-                [activeCardId]="userDetailsId" *ngFor="let user of users"></app-user-card>
+        <div class="pb-4 user-card-wrapper" infiniteScroll [scrollWindow]="false" [infiniteScrollDistance]="0.1"
+            [infiniteScrollThrottle]="0" (scrolled)="loadMore()"
+            [ngClass]="{'col-sm-11': !isDetailsPreview,'col-sm-8':isDetailsPreview}">
+            <app-user-card class="user-card" [user]="user" (onActivateCard)="getUserDetails($event,user)"
+                [isCardActive]="isDetailsPreview" [activeCardId]="userDetailsId" *ngFor="let user of users"
+                (onEdit)="edit($event,template)" (onDelete)="delete($event,deleteTemplate)"></app-user-card>
+            <div class="loading-indicator-wrapper" *ngIf="showLoading">
+                <app-loading-indicator text="Loading more users"></app-loading-indicator>
+            </div>
         </div>
+
         <div class="details-wrapper col-sm-4" *ngIf="isDetailsPreview">
-            <app-user-details-card [user]="userDetails" (onClose)="closeDetails($event)" (onEdit)="edit(template,userDetails.id)">
+            <app-user-details-card [user]="userDetails" (onClose)="closeDetails($event)"
+                (onEdit)="edit($event,template)"
+                (onDelete)="delete($event,deleteTemplate)">
             </app-user-details-card>
         </div>
     </div>
@@ -39,24 +45,49 @@
         </div>
         <div class="user-form-container w-100 p-4">
             <form [formGroup]="userForm">
-                <div class="login-form__control mt-3">
-                    <app-input-text [formGroup]="userForm" controlName="name" type="text" name="name"
-                        placeholder="Enter your name" label="name"></app-input-text>
+                <div class="user-form__control mt-3">
+                    <app-input-text [formGroup]="userForm" controlName="name" [value]="name.value" type="text"
+                        name="name" placeholder="Enter name" label="name"></app-input-text>
+                        <div class="error"
+                        *ngIf=" (isSubmitted && (userForm.get('name').invalid&&userForm.get('name').hasError('required')) ||
+                        (userForm.get('name').dirty || userForm.get('name').touched)) && userForm.get('name').hasError('required')">
+                        Please enter name
+                    </div>
                 </div>
-                <div class="login-form__control mt-3">
-                    <app-input-text [formGroup]="userForm" controlName="job" type="text"
-                        name="job" placeholder="Enter your job" label="job"></app-input-text>
-                        <!-- <div class="error" *ngIf=" (isSubmitted && (userForm.get('job').invalid&&userForm.get('job').hasError('required')) ||
-                        (userForm.get('job').dirty || userForm.get('job').touched)) && userForm.get('job').hasError('required')">
-                            Please enter your job
-                        </div> -->
+                <div class="user-form__control mt-3">
+                    <app-input-text [formGroup]="userForm" controlName="lastName" [value]="lastName.value" type="text"
+                        name="lastName" placeholder="Enter lastName" label="last name"></app-input-text>
+                    <div class="error"
+                        *ngIf=" (isSubmitted && (userForm.get('lastName').invalid&&userForm.get('lastName').hasError('required')) ||
+                        (userForm.get('lastName').dirty || userForm.get('lastName').touched)) && userForm.get('lastName').hasError('required')">
+                        Please enter last name
+                    </div>
                 </div>
                 <div class="btns-container mt-4 d-flex align-items-center justify-content-between">
-                    
-                    <button class="btn btn-lg primary-outline" (click)="modalRef.hide()">Cancel</button>
+
+                    <button class="btn btn-lg primary-outline" (click)="cancel()">Cancel</button>
                     <button class="btn btn-lg primary" (click)="save()">{{isEditMode?'Save':'Add'}}</button>
                 </div>
             </form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #deleteTemplate>
+    <div class="user-modal d-flex justify-content-center">
+        <div class="user-form-container w-100 p-4">
+            <div class="text-container d-flex flex-column align-items-center justify-content-center">
+                <div class="title">
+                    Are You sure you want to delete
+                </div>
+                <div class="subtitle">
+                    {{userDetails.first_name}} {{userDetails.last_name}}
+                </div>
+            </div>
+            <div class="btns-container mt-4 d-flex align-items-center justify-content-between">
+                <button class="btn btn-lg primary-outline" (click)="cancel()">Cancel</button>
+                <button class="btn btn-lg primary" (click)="deleteUser(userDetails.id)">Delete</button>
+            </div>
         </div>
     </div>
 </ng-template>

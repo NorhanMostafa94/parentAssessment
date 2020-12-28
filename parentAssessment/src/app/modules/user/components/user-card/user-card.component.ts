@@ -13,6 +13,8 @@ export class UserCardComponent implements OnInit {
   @Input('activeCardId') activeCardId;
 
   @Output('onActivateCard') onActivateCard = new EventEmitter<any>();
+  @Output('onEdit') onEdit = new EventEmitter<any>();
+  @Output('onDelete') onDelete = new EventEmitter<any>();
 
   @Input('isCardActive') isCardActive: boolean = false;
 
@@ -21,10 +23,18 @@ export class UserCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  activateCard(id) {
-    this.activeCardId = id;
+  activateCard(user) {
+    this.activeCardId = user.id;
     this.isCardActive = true;
-    this.onActivateCard.emit(id);
+    this.onActivateCard.emit(user);
+  }
+
+  edit(user){
+    this.onEdit.emit(user);
+  }
+
+  delete(user){
+    this.onDelete.emit(user);
   }
 
 }

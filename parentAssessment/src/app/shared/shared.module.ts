@@ -8,9 +8,7 @@ import { IconsComponent } from './components/icons/icons.component';
 import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
-
-
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +16,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   AlertToastrComponent,
   SvgAssetsComponent,
   IconsComponent,
+  LoadingIndicatorComponent,
 ],
   imports: [
     CommonModule,
@@ -37,7 +36,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     AlertToastrComponent,
     IconsComponent,
     SvgAssetsComponent,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    LoadingIndicatorComponent
   ],
   entryComponents:[
     AlertToastrComponent

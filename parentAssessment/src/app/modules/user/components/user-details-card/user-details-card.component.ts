@@ -23,12 +23,12 @@ export class UserDetailsCardComponent implements OnInit {
     this.onClose.emit(false);
   }
 
-  edit(){
-    this.onEdit.emit();
+  edit(user){
+    this.onEdit.emit(user);
   }
 
-  delete(){
-    this.onDelete.emit();
+  delete(user){
+    this.onDelete.emit(user);
   }
 
 }

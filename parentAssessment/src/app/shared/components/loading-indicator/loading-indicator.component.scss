@@ -1,0 +1,11 @@
+@import 'abstracts/variables';
+
+.loading-indcator-container{
+    svg{
+        fill: $primary-color;
+    }
+    .text{
+        color: $primary-color;
+        font-size: 12px;
+    }
+}

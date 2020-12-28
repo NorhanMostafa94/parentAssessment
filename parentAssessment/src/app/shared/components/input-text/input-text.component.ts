@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input-text',
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputTextComponent),
+      multi: true
+    }
+  ]
 })
 export class InputTextComponent implements OnInit {
 
@@ -21,7 +28,7 @@ export class InputTextComponent implements OnInit {
   /**
    * type of input field
    */
-  @Input('controlName') controlName: string;
+  @Input('controlName') controlName: string = '';
 
   /**
    * name of input field
@@ -46,7 +53,7 @@ export class InputTextComponent implements OnInit {
   /**
    * value of input field
    */
-  value: string;
+  @Input() value: string;
 
   hidePassword: boolean = true;
 
@@ -60,6 +67,7 @@ export class InputTextComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.formGroup.controls)
   }
 
   /**
@@ -81,5 +89,16 @@ export class InputTextComponent implements OnInit {
       this.valueEmitter.emit(this.value);
     }
   }
+
+  writeValue(value: any) {
+    this.value = value;
+  }
+
+  registerOnChange(fn: (value: any) => void) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched() { }
+
 
 }

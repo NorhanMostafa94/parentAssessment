@@ -4,7 +4,7 @@
     .users-header-container {
         height: 100px;
         background-color: $gray-light-2-color;
-        .users-header{
+        .users-header {
             color: $text-color;
             font-size: 30px;
         }
@@ -19,8 +19,11 @@
             overflow-y: scroll;
             height: 500px;
             margin: 5px 0;
-            &:not(:last-child) {
-                border-bottom: 1px solid $border-2-color;
+            .user-card {
+                display: block;
+                &:not(:last-child) {
+                    border-bottom: 1px solid $border-2-color;
+                }
             }
         }
     }
@@ -29,7 +32,6 @@
 .user-modal {
     position: relative;
     width: 350px;
-    height: 300px;
     .user-image-container {
         position: absolute;
         top: -60px;
@@ -42,5 +44,22 @@
     }
     .user-form-container {
         margin-top: 38px;
+
+        .user-form__control {
+            .error {
+                color: $error-color;
+            }
+        }
+
+        .text-container{
+            .title{
+                color: $text-color;
+                font-size: 15px;
+            }
+            .title{
+                color: $text-secondary-color;
+                font-size: 12px;
+            }
+        }
     }
 }

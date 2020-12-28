@@ -36,4 +36,10 @@ export class UserLogicService {
       return res;
     }));
   }
+
+  deleteUser(id) {
+    return this.userService.deleteUser(id).pipe(map(res => {
+      return res;
+    }));
+  }
 }

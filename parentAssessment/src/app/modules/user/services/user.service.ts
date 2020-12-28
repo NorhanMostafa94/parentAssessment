@@ -40,7 +40,7 @@ export class UserService {
     }));
   }
 
-  updateUser(id,user) {
+  updateUser(id, user) {
     return this.xhrService.call({
       url: `users/${id}`,
       method: 'POST',
@@ -48,6 +48,15 @@ export class UserService {
         name: user.name,
         job: user.job
       }
+    }).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  deleteUser(id) {
+    return this.xhrService.call({
+      url: `users/${id}`,
+      method: 'DELETE'
     }).pipe(map(res => {
       return res;
     }));

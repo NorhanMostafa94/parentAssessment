@@ -12,10 +12,10 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 })
 export class XhrService {
 
-  constructor(private httpClient:HttpClient,
-    private router:Router,
-    private alertService:AlertService) { }
-  
+  constructor(private httpClient: HttpClient,
+    private router: Router,
+    private alertService: AlertService) { }
+
   defaultHeaders = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -34,14 +34,14 @@ export class XhrService {
   };
 
   public getFinalParams(options: any): any {
-      this.defaultOptions.headers = new HttpHeaders({
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Allow-Origin': '*',
-        'Access-Control-Allow-Origin': '*',
-        'LanguageCode': 'en',
-        'Authorization': localStorage.getItem('token') ? ('bearer ' + JSON.parse(localStorage.getItem('token')).token) : ''
-      });
+    this.defaultOptions.headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Allow-Origin': '*',
+      'Access-Control-Allow-Origin': '*',
+      'LanguageCode': 'en',
+      'Authorization': localStorage.getItem('token') ? ('bearer ' + JSON.parse(localStorage.getItem('token')).token) : ''
+    });
 
     const newRequestOptions: any = (<any>Object).assign(
       {},
@@ -69,7 +69,7 @@ export class XhrService {
     return finalUrl;
   }
 
-  call(params){
+  call(params) {
     return new Observable((observer) => {
       let finalParams = this.getFinalParams(params);
       const req = new HttpRequest(
@@ -78,7 +78,7 @@ export class XhrService {
         finalParams.body,
         finalParams.options
       );
-  
+
       const request = this.httpClient.request(req);
       let rejection: string;
       if (navigator.onLine) {
@@ -87,17 +87,13 @@ export class XhrService {
             if (event.type === HttpEventType.Response) {
               const body = event.body;
               observer.next(body);
-              
+
             }
           },
           (error: HttpErrorResponse) => {
-  
-            // this.loaderService.hide();
-  
             if (error.error instanceof ErrorEvent) {
-  
+
               // A client-side or network error occurred. Handle it accordingly.
-              console.error('An error occurred:', error);
             } else {
               // The backend returned an unsuccessful response code.
               // The response body may contain clues as to what went wrong,
@@ -105,23 +101,15 @@ export class XhrService {
                 //rejection = Rejection.Offline;
               }
               else if (error.status === 401) {
-                //rejection = Rejection.Session;
-                //this.sessionRejected.emit();
-                // this.alertToastrService.clear();
-  
-                // this.alertToastrService.show('warning', 'Warning', 'Your session has been expired, Please login');
                 localStorage.clear();
                 this.router.navigate(['/login'])
               }
               else if (error.status === 400) {
                 this.alertService.show('error', 'Error', error.error.error)
               }
-              else if (error.status == 500) {
-                // this.alertService.show('error', 'root.alert.error', error.error.ErrorMessage)
-  
-              }
               else {
                 //rejection = Rejection.Technical;
+                this.alertService.show('error', 'Error', error.error.error)
               }
             }
             observer.error(rejection);
@@ -129,12 +117,7 @@ export class XhrService {
         )
       }
       else {
-        // this.loaderService.hide();
-        // // if (!this.isAlertWarning) {
-        // this.alertToastrService.clear()
-        // this.alertToastrService.show('warning', 'No Internet Connection', 'Please check your internet connection & try again.')
-        // this.isAlertWarning = true;
-        // }
+        this.alertService.show('warning', 'No Internet Connection', 'Please check your internet connection & try again.')
       }
     });
 
