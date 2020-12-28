@@ -1,1 +1,62 @@
-<p>users-list works!</p>
+<div class="users-list-page">
+    <div class="row m-0">
+        <div class="col-sm-12 users-header-container d-flex align-items-center justify-content-between">
+            <div class="users-header px-4">
+                <div class="title">Users List</div>
+            </div>
+            <div class="add-btn">
+                <button class="btn btn-sm primary" (click)="add(template)">
+                    +
+                    <span class="mx-2">
+                        New User
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row users-list-wrapper d-flex justify-content-center no-gutters">
+        <div class="pb-4 user-card-wrapper"
+        infiniteScroll [scrollWindow]="false" [infiniteScrollDistance]="0.1"
+        [infiniteScrollThrottle]="0" (scrolled)="loadMore()"
+         [ngClass]="{'col-sm-11': !isDetailsPreview,'col-sm-8':isDetailsPreview}">
+            <app-user-card [user]="user" (onActivateCard)="getUserDetails($event)" [isCardActive]="isDetailsPreview"
+                [activeCardId]="userDetailsId" *ngFor="let user of users"></app-user-card>
+        </div>
+        <div class="details-wrapper col-sm-4" *ngIf="isDetailsPreview">
+            <app-user-details-card [user]="userDetails" (onClose)="closeDetails($event)" (onEdit)="edit(template,userDetails.id)">
+            </app-user-details-card>
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="user-modal d-flex justify-content-center">
+        <div class="user-image-container d-flex align-items-center justify-content-center">
+            <img *ngIf="isEditMode" [src]="userDetails.avatar" alt="">
+            <svg *ngIf="!isEditMode" width="30" height="30" viewBox="0 0 30 30">
+                <use xlink:href="#user"></use>
+            </svg>
+        </div>
+        <div class="user-form-container w-100 p-4">
+            <form [formGroup]="userForm">
+                <div class="login-form__control mt-3">
+                    <app-input-text [formGroup]="userForm" controlName="name" type="text" name="name"
+                        placeholder="Enter your name" label="name"></app-input-text>
+                </div>
+                <div class="login-form__control mt-3">
+                    <app-input-text [formGroup]="userForm" controlName="job" type="text"
+                        name="job" placeholder="Enter your job" label="job"></app-input-text>
+                        <!-- <div class="error" *ngIf=" (isSubmitted && (userForm.get('job').invalid&&userForm.get('job').hasError('required')) ||
+                        (userForm.get('job').dirty || userForm.get('job').touched)) && userForm.get('job').hasError('required')">
+                            Please enter your job
+                        </div> -->
+                </div>
+                <div class="btns-container mt-4 d-flex align-items-center justify-content-between">
+                    
+                    <button class="btn btn-lg primary-outline" (click)="modalRef.hide()">Cancel</button>
+                    <button class="btn btn-lg primary" (click)="save()">{{isEditMode?'Save':'Add'}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>

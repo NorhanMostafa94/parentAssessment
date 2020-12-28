@@ -1,0 +1,42 @@
+<div class="user-details-card p-3">
+    <div class="close-icon-container d-flex justify-content-end">
+        <div class="close-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" (click)="close()">
+                <use xlink:href="#close"></use>
+            </svg>
+        </div>
+    </div>
+
+    <div class="user-container d-flex flex-column align-items-center justify-content-center">
+        <div class="user-container__image">
+            <img [src]="user.avatar" alt="userimage" srcset="">
+        </div>
+
+        <div class="user-container__name">
+            {{user.first_name}} {{user.last_name}}
+        </div>
+
+        <div class="user-container__controls d-flex justify-content-between mt-4">
+            <div class="control mx-1">
+                <button class="btn btn-sm primary" (click)="edit()">
+                    <svg width="16" height="17" viewBox="0 0 16 17">
+                        <use xlink:href="#edit"></use>
+                    </svg>
+                    <span class="mx-2">
+                        Edit
+                    </span>
+                </button>
+            </div>
+            <div class="control mx-1">
+                <button class="btn btn-sm primary-outline" (click)="delete()">
+                    <svg width="16" height="17" viewBox="0 0 16 17">
+                        <use xlink:href="#delete"></use>
+                    </svg>
+                    <span class="mx-2">
+                        Delete
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

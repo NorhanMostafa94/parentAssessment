@@ -15,13 +15,13 @@ const routes: Routes = [
         path: 'users',
         loadChildren: () => import('./modules/user/user-routing.module').then(m => m.UserRoutingModule)
       },
+      {
+        path: '',
+        redirectTo: '/users',
+        pathMatch: 'full'
+      }
     ]
   },
-  // {
-  //   path: '',
-  //   redirectTo: '/users',
-  //   pathMatch: 'full'
-  // }
 ];
 
 @NgModule({

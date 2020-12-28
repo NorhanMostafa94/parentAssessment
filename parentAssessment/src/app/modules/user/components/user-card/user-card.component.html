@@ -1,0 +1,28 @@
+<app-svg-assets></app-svg-assets>
+<div class="user-card-container p-4" [ngClass]="{'active': user.id == activeCardId}">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="user-card-container__user d-flex align-items-center">
+                <div class="image-container">
+                    <img [src]="user.avatar" alt="">
+                </div>
+                <div class="text-container mx-4">
+                    {{user.first_name}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 d-flex align-items-center justify-content-end">
+            <div class="icons-container" *ngIf="user.id !== activeCardId">
+                <app-icons icon="edit"></app-icons>
+            </div>
+            <div class="icons-container mx-3" *ngIf="user.id !== activeCardId">
+                <app-icons icon="delete"></app-icons>
+            </div>
+            <div class="icons-container" (click)="activateCard(user.id)">
+                <svg width="16" height="16" viewBox="0 0 24 24">
+                    <use xlink:href="#arrow"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>

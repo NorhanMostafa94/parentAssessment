@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ToastContainerDirective } from 'ngx-toastr/toastr/toast.directive';
-import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-alert-toastr',

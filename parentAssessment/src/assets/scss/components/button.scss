@@ -1,37 +1,49 @@
-@import 'abstracts/variables';
+@import "abstracts/variables";
 
-.btn{
-    border-radius: 20px;
-    outline: none !important;
-    font-size: 15px;
-    font-weight: 400;
-    border: 0;
-    text-align: center;
+.btn {
+  border-radius: 20px;
+  outline: none !important;
+  font-size: 15px;
+  font-weight: 400;
+  border: 0;
+  text-align: center;
+  color: $white-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  line-height: unset;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+  &.btn-sm {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &.btn-lg {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &.primary {
     color: $white-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  //   border: 1px solid transparent;
-    transition: all 0.3s ease-in-out;
-    line-height: unset;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    background-color: $primary-color;
+    svg{
+      fill: $white-color;
+    }
+  }
 
-    &.btn-sm {
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-    
-      &.btn-lg {
-        padding-left: 19px;
-        padding-right: 19px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      
-      &.primary{
-          color: $white-color;
-          background-color: $primary-color;
-      }
+  &.primary-outline {
+    color: $primary-color;
+    background-color: $white-color;
+    border: 1px solid $primary-color;
+    svg{
+      fill: $primary-color;
+    }
+  }
 }

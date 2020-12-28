@@ -5,16 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginModule } from './modules/login/login.module';
 import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './modules/login/pages/login/login.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { LoginModule } from './modules/login/login.module';
+import { UserModule } from './modules/user/user.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    // LoginComponent,
+    // InputTextComponent
   ],
   imports: [
     BrowserModule,
@@ -22,12 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     BrowserAnimationsModule,
     CoreModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ToastrModule.forRoot({
-      //  autoDismiss: false,
-    }),
-    ToastContainerModule,
+    SharedModule,
+    LoginModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -87,6 +87,7 @@ export class XhrService {
             if (event.type === HttpEventType.Response) {
               const body = event.body;
               observer.next(body);
+              
             }
           },
           (error: HttpErrorResponse) => {

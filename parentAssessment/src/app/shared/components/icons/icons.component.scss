@@ -1,0 +1,12 @@
+@import 'abstracts/variables';
+
+.icon-container{
+    width: 32px;
+    height: 32px;
+    background-color: $white-color;
+    border-radius: 5px;
+    border: 1px solid $primary-color;
+    svg{
+        fill: $primary-color;
+    }
+}

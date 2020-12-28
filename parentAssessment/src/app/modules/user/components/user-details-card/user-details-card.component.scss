@@ -1,0 +1,31 @@
+@import 'abstracts/variables';
+
+.user-details-card{
+    height: 100%;
+    background-color: $gray-light-color;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    .close-icon-container{
+        .close-icon{
+            svg{
+                fill: $primary-color;
+            }
+        }
+    }
+    .user-container{
+        &__image{
+            width: 127px;
+            height: 127px;
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+        &__name{
+            color: $text-color;
+            font-size: 25px;
+        }
+    }
+}
